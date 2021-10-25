@@ -1,7 +1,7 @@
 {
   "name": "com.greengreysoftworks.dmpanalytics",
   "displayName": "Dmp Analytics",
-  "version": "0.0.2",
+  "version": "0.0.9",
   "unity": "2019.1",
   "description": "Dmp analytics package",
   "type": "library"
