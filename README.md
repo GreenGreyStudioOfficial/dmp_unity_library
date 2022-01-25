@@ -1,88 +1,108 @@
-# com.greengreysoftworks.dmpanalytics
+# DMP Analytics Library for Unity
 Библиотека для сбора и отправки событий аналитики
 
-# Текущая версия
+## Текущая версия
+0.0.9
 
-0.0.2
+## 0. Что понадобится для интеграции?
+**analytics_project_key** - ключ идентификации проекта в системе аналитики
 
-# Необходимые данные для подключения библиотеки
+Его вы можете получить у менеджера Green Grey
 
-Токен авторизации для доступа к github репозиторию (далее <github_api_token>).
 
-> Пример:
-> 
-> ghp_sroeYEp9kOATCW3kQdzIpcs0jS5JTm04vHK
+## 1. Добавление в проект
+1.1 В панели Package Manager выберите Add package from git URL
 
-Ключ идентификации проекта в системе аналитики (далее <analytics_project_key>).
+![Add package to project](/.readme/add_package_from_git.png)
 
-> Пример:
->
-> 779a42bdbebeccc7099de0aaff8b7298d4c22638a95028c362da50bcc5da9e67
+1.2 В открывшемся окне вставьте ссылку https://github.com/GreenGreyStudioOfficial/dmp_unity_library.git#v0.0.9
 
-# Добавление библиотеки в проект
-
-Добавление библиотеки возможно из приватного репозитория в пространстве GreenGreyStudioOfficial. 
-Адрес состоит из трех частей:
-- <github_api_token>
-- путь до репозитория Github
-- текущая версия библиотеки (ссылка на git tag релизного коммита)
-
-Пример:
-
-> https://<**github_api_token**>@github.com/GreenGreyStudioOfficial/dmp_unity_library.git#v<**current_version**>
-
-Чтобы добавить зависимость в проект, нужно открыть **PROJECT_DIR/Packages/manifest.json** текущего проекта и добавить строчку в раздел "dependencies"
-
-Пример:
-
-```json
-  "dependencies": {
-    ...,
-    "com.greengreysoftworks.dmpanalytics": "https://ghp_sroeYEp9kOATCW3kQdzIpcs0jS5JTm04vHK@github.com/GreenGreyStudioOfficial/dmp_unity_library.git#v0.0.2"
-  }
-```
-
-# Использование библиотеки
-
-### Добавление ассета на сцену:
-
-Для подключения аналитики в проект, нужно в стартовую сцену проекта добавить GameObject с компонентами `DmpAnalytics` и `DmpConfiguration`.
-Для автоматического добавления можно воспользоваться пунктами меню
-
-`[Edit] -> [GreenGray] -> [Create Dmp Prefab]`
+1.3 Выберите пункт меню Edit → GreenGrey → Create Dmp Prefab.
 
 ![Add asset](/.readme/add_asset.png)
 
-В итоге на сцене должен появиться prefab с компонентами:
+Это создаст в текущей сцене объект DmpAnalytics, управляющий отправкой аналитики на сервер. 
 
-![Prefab with components](/.readme/prefab_with_components.png)
+1.4 В свойствах объекта DmpAnalytics укажите свой **analytics_project_key** - ключ идентификации проекта в системе аналитики.
 
-### Доступные настройки:
+Также здесь можно поменять управлять настройками библиотеки аналитики:
 
-![Settings](/.readme/settings.png)
+![Settings](/.readme/properties.png)
 
-**Api Uri** - адрес бекенда статистики (не менять)
+**Api Uri** - адрес бэкенда статистики (не менять)
 
-**Api Key** - ключ идентификации проекта в системе аналитики (<analytics_project_key>)
+**Api Key** - ключ идентификации проекта в системе аналитики
 
-**Max Events Count To Send** - количество событий, после которых произойдет отправка на сервер.
+**Max Events Count To Send** - количество событий, после которых произойдет отправка на сервер статистики.
 
-**Send Events Timeout In Sec** - таймаут, после которого события будут отправлены на сервер, если не достигнуто максимальное количество.
+**Send Events Timeout In Sec** - таймаут, после которого события будут отправлены на сервер, даже если не достигнуто максимальное количество.
 
-**Debug Mode** - включает логирование Debug.Log
+**Debug Mode** - включает отладочное логирование
 
-**Register App Pause** - добавлять или нет событие `APP_ENABLE` (при отладке в редакторе)
+**Register App Pause** - добавлять или нет событие APP_ENABLE (при отладке в редакторе)
 
-**Sending settings** - позволяет отключать отсылаемые события по типам
 
-### Интеграция с AppsFlyer:
+## 2. Использование
 
-В библиотеке реализован компонент `DmpAppsFlyerBridge`, который автоматически добавляется к префабу, на котором находится `DmpAnalytics`, находит подключенный модуль AppsFlyer и запрашивает необходимые данные.
+Чтобы трекать события используйте методы глобального объекта DmpAnalytics.Instance
 
-# API
 
-### Регистрация и отправка пользовательских событий:
+### Трекинг покупок
 
-    IDmpCustomEventRegistry RegisterEvent(string _eventName);
-    IDmpCustomEventRegistry RegisterEventProperty(string _eventProperty);
-    void LogCustomEvent(string _eventName, Dictionary<string, object> _eventParams = null);
+Для трекинга покупок используйте методы LogPurchase:
+
+```
+void LogPurchase(string _currency, float _value, Dictionary<string, object> _eventParams);
+void LogPurchase(string _currency, float _value);
+```
+
+где
+
+_currency - трехбуквенный код валюты покупки по [ISO_4217](https://en.wikipedia.org/wiki/ISO_4217#Active_codes)
+
+_value - сумма покупки
+
+_eventParams - произвольные дополнительные параметры
+
+
+Пример:
+
+```
+DmpAnalytics.Instance.LogPurchase("USD", 0.99f, new Dictionary<string, object>
+{
+   ["lot"] = "big_coins_pack",
+   ["from"] = "fullscreen_offer",
+   ["show_count"] = 2
+});
+```
+
+### Трекинг произвольных событий
+
+Для трекинга событий используйте метод LogEvent:
+
+```
+void LogCustomEvent(string _eventName, Dictionary<string, object> _eventParams = null);
+```
+
+где:
+
+_eventName - имя события
+
+_eventParams  - произвольные дополнительные параметры
+
+Пример:
+```
+DmpAnalytics.Instance.LogCustomEvent("SCENE_OPEN", new Dictionary<string, object>
+{
+   {"scene_index", currentSceneIndex},
+   {"scene_name", SceneManager.GetActiveScene().name}
+});
+```
+
+## 3. Проверка интеграции
+
+При вызове методов DmpAnalytics.Instance в консоли должны отображаться сообщения об отправке событий (убедитесь, что флаг Debug Mode установлен  в настройках аналитики - см. п. 1.4):
+
+![Log](/.readme/log.png)
+
+Проверить валидность отправленных событий вы сможете в персональном дашборде в Tableau, доступ к которому вы получите от менеджера Green Grey вместе с ключами приложения.
