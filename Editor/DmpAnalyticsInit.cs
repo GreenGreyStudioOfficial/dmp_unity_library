@@ -7,10 +7,10 @@ namespace GreenGrey.Editor
 {
     public class DmpAnalyticsInit
     {
-        [MenuItem("Edit/GreenGrey/Create Dmp Prefab")]
-        public static void CreateDmpAnalyticsPrefabOnScene()
+        [MenuItem("GreenGrey/Analytics/Create GGAnalytics GameObject")]
+        public static void CreateGGAnalyticsPrefabOnScene()
         {
-            var dmpObject = new GameObject("DmpAnalytics");
+            var dmpObject = new GameObject("GGAnalytics");
             dmpObject.AddComponent<DmpConfiguration>();
             dmpObject.AddComponent<DmpAnalytics>();
             SceneManager.MoveGameObjectToScene(dmpObject, SceneManager.GetActiveScene());
