@@ -2,7 +2,7 @@
 Библиотека для сбора и отправки событий игровой аналитики в системе DMP.
 
 ## Текущая версия
-1.0.0
+1.1.0
 
 ## 0. Что понадобится для интеграции?
 **analytics_project_key** - ключ идентификации проекта в системе аналитики
@@ -15,15 +15,23 @@
 
 ![Add package to project](/.readme/add_package_from_git.png)
 
-1.2 В открывшемся окне вставьте ссылку https://github.com/GreenGreyStudioOfficial/dmp_unity_library.git#v0.0.9
+1.2 В открывшемся окне вставьте ссылку https://github.com/GreenGreyStudioOfficial/dmp_unity_library.git#1.1.0
 
-1.3 Выберите пункт меню Edit → GreenGrey → Create Dmp Prefab.
+1.3 Выберите пункт меню GreenGrey → Analytics → Create GGAnalytics GameObject.
 
 ![Add asset](/.readme/add_asset.png)
 
-Это создаст в текущей сцене объект DmpAnalytics, управляющий отправкой аналитики на сервер. 
+Это создаст в текущей сцене объект GGAnalytics, управляющий отправкой аналитики на сервер. 
 
-1.4 В свойствах объекта DmpAnalytics укажите свой **analytics_project_key** - ключ идентификации проекта в системе аналитики.
+1.4 В свойствах объекта GGAnalytics укажите свой **analytics_project_key** - ключ идентификации проекта в системе аналитики.
+
+- DebugApiKey - ключ аналитики для отправки событий при разработке/тестировании приложения.
+- AndroidApiKey - ключ аналитики для отправки событий релизной версии android приложения.
+- IosApiKey - ключ аналитики для отправки событий релизной версии ios приложения.
+
+> Важно: заполнение полей DebugApiKey, AndroidApiKey и IosApiKey обязательно. Ключи могут содержать одно и то же значение, но желательно разделять тестовое и релизное окружение во избежании засорения актуальных данных тестовыми событиям.
+
+> DebugApiKey используется всегда при активном DebugMode. При сборке релизного приложения, для использования соответствующих релизных ключей, его необходимо отключать. 
 
 Также здесь можно поменять управлять настройками библиотеки аналитики:
 
@@ -31,15 +39,25 @@
 
 **Api Uri** - адрес бэкенда статистики (не менять)
 
-**Api Key** - ключ идентификации проекта в системе аналитики
+**Debug Mode** - синализирует что нужно отправлять события только по DebugApiKey ключу.
+
+**Debug Api Key** - ключ аналитики для отправки событий при разработке/тестировании приложения.
+
+**Android Api Key** - ключ аналитики для отправки событий релизной версии android приложения.
+
+**Ios Api Key** - ключ аналитики для отправки событий релизной версии ios приложения.
 
 **Max Events Count To Send** - количество событий, после которых произойдет отправка на сервер статистики.
 
 **Send Events Timeout In Sec** - таймаут, после которого события будут отправлены на сервер, даже если не достигнуто максимальное количество.
 
-**Debug Mode** - включает отладочное логирование
-
 **Register App Pause** - добавлять или нет событие APP_ENABLE (при отладке в редакторе)
+
+**Log Level** - уровень логирования в Unity console:
+- DEBUG - логировать все сообщения
+- WARNING - логировать сообщения уровня WARNING и ERROR
+- ERROR - логировать только сообщения уровня ERROR
+- OFF - выключение логирования
 
 
 ## 2. Использование
@@ -81,7 +99,7 @@ DmpAnalytics.Instance.LogPurchase("USD", 0.99f, new Dictionary<string, object>
 Для трекинга событий используйте метод LogEvent:
 
 ```
-void LogCustomEvent(string _eventName, Dictionary<string, object> _eventParams = null);
+void LogEvent(string _eventName, Dictionary<string, object> _eventParams = null);
 ```
 
 где:
@@ -92,7 +110,7 @@ _eventParams  - произвольные дополнительные парам
 
 Пример:
 ```
-DmpAnalytics.Instance.LogCustomEvent("SCENE_OPEN", new Dictionary<string, object>
+DmpAnalytics.Instance.LogEvent("SCENE_OPEN", new Dictionary<string, object>
 {
    {"scene_index", currentSceneIndex},
    {"scene_name", SceneManager.GetActiveScene().name}
