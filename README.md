@@ -1,89 +1,91 @@
 # Green Grey Analytics Library for Unity
-Библиотека для сбора и отправки событий игровой аналитики в системе DMP.
+Translations of the guide are available in the following languages:
+* [Russian](/README_ruRU.md)
 
-## Текущая версия
+## Current version
 1.1.0
 
-## 0. Что понадобится для интеграции?
-**analytics_project_key** - ключ идентификации проекта в системе аналитики
+## 0. What you need for integration
+**analytics_project_key** - the project ID key in the analytics system
 
-Его вы можете получить у менеджера Green Grey
+You may obtain it from your manager in Green Grey
 
 
-## 1. Добавление в проект
-1.1 В панели Package Manager выберите Add package from git URL
+## 1.Adding to the project
+1.1 In the Package Manager panel, select Add package from git URL
 
 ![Add package to project](/.readme/add_package_from_git.png)
 
-1.2 В открывшемся окне вставьте ссылку https://github.com/GreenGreyStudioOfficial/dmp_unity_library.git#1.1.0
+1.2 In the window that opens, insert the link https://github.com/GreenGreyStudioOfficial/dmp_unity_library.git#1.1.0
 
-1.3 Выберите пункт меню GreenGrey → Analytics → Create GGAnalytics GameObject.
+1.3 Select the menu item GreenGrey → Analytics → Create GGAnalytics GameObject.
 
 ![Add asset](/.readme/add_asset.png)
 
-Это создаст в текущей сцене объект GGAnalytics, управляющий отправкой аналитики на сервер. 
+This will create a current scene GGAnalytics object that controls sending analytics to the server. 
 
-1.4 В свойствах объекта GGAnalytics укажите свой **analytics_project_key** - ключ идентификации проекта в системе аналитики.
 
-- DebugApiKey - ключ аналитики для отправки событий при разработке/тестировании приложения.
-- AndroidApiKey - ключ аналитики для отправки событий релизной версии android приложения.
-- IosApiKey - ключ аналитики для отправки событий релизной версии ios приложения.
+1.4 In the properties of the GGAnalytics object, specify **analytics_project_key** - the project ID key in the analytics system.
 
-> Важно: заполнение полей DebugApiKey, AndroidApiKey и IosApiKey обязательно. Ключи могут содержать одно и то же значение, но желательно разделять тестовое и релизное окружение во избежании засорения актуальных данных тестовыми событиям.
+- DebugApiKey - analytics key to send events when developing or testing the app (Android Key can be used for this too).
+- AndroidApiKey - analytics key to send events from the release version of the Android app.
+- IosApiKey - analytics key to send events from the release version of the iOS app.
 
-> DebugApiKey используется всегда при активном DebugMode. При сборке релизного приложения, для использования соответствующих релизных ключей, его необходимо отключать. 
+> Important: filling in the DebugApiKey, AndroidApiKey and iosApiKey is obligatory. The keys can contain the same value, but it’s better to separate test and release environment to evade scrambling valid data with test events.
 
-Также здесь можно поменять управлять настройками библиотеки аналитики:
+> DebugApiKey is used always when DebugMode is active. When assembling the release app, to use the correct release analytics keys, DebugMode needs to be disabled.
+
+Here you can also manage settings of the analytics library:
 
 ![Settings](/.readme/properties.png)
 
-**Api Uri** - адрес бэкенда статистики (не менять)
+**Api Uri** - the backend statistics address (do not change)
 
-**Debug Mode** - синализирует что нужно отправлять события только по DebugApiKey ключу.
+**Debug Mode** - use or do not use DebugApiKey.
 
-**Debug Api Key** - ключ аналитики для отправки событий при разработке/тестировании приложения.
+**Debug Api Key** - analytics key to send events when developing or testing the app.
 
-**Android Api Key** - ключ аналитики для отправки событий релизной версии android приложения.
+**Android Api Key** - analytics key to send events from the release version of the Android app.
 
-**Ios Api Key** - ключ аналитики для отправки событий релизной версии ios приложения.
+**Ios Api Key** - analytics key to send events from the release version of the iOS app.
 
-**Max Events Count To Send** - количество событий, после которых произойдет отправка на сервер статистики.
+**Max Events Count To Send** - the maximum number of events before they are sent to the statistics server.
 
-**Send Events Timeout In Sec** - таймаут, после которого события будут отправлены на сервер, даже если не достигнуто максимальное количество.
+**Send Events Timeout In Sec** - timeout after which events will be sent to the server even if they haven't reached the maximum number.
 
-**Register App Pause** - добавлять или нет событие APP_ENABLE (при отладке в редакторе)
+**Register App Pause** - add or not the APP_ENABLE event (when debugging in the editor)
 
-**Log Level** - уровень логирования в Unity console:
-- DEBUG - логировать все сообщения
-- WARNING - логировать сообщения уровня WARNING и ERROR
-- ERROR - логировать только сообщения уровня ERROR
-- OFF - выключение логирования
+**Log Level** - log level for Unity console:
+- DEBUG - log all messages
+- WARNING - log only WARNING и ERROR messages
+- ERROR - log only ERROR messages
+- OFF - do not log any messages
 
 
-## 2. Использование
+## 2. Usage
 
-Чтобы трекать события используйте методы глобального объекта DmpAnalytics.Instance
+For event tracking, use the methods of the DmpAnalytics.Instance global object
 
 
 ### Трекинг покупок
 
-Для трекинга покупок используйте методы LogPurchase:
+For purchase tracking, use LogPurchase methods:
 
 ```
 void LogPurchase(string _currency, float _value, Dictionary<string, object> _eventParams);
 void LogPurchase(string _currency, float _value);
 ```
 
-где
+where
 
-_currency - трехбуквенный код валюты покупки по [ISO_4217](https://en.wikipedia.org/wiki/ISO_4217#Active_codes)
+_currency is the three-letter code of the purchase currency according to [ISO_4217](https://en.wikipedia.org/wiki/ISO_4217#Active_codes)
 
-_value - сумма покупки
+_value is the purchase amount
 
-_eventParams - произвольные дополнительные параметры
+_eventParams are arbitrary additional parameters
 
 
-Пример:
+Example:
 
 ```
 DmpAnalytics.Instance.LogPurchase("USD", 0.99f, new Dictionary<string, object>
@@ -94,21 +96,21 @@ DmpAnalytics.Instance.LogPurchase("USD", 0.99f, new Dictionary<string, object>
 });
 ```
 
-### Трекинг произвольных событий
+### Tracking arbitrary events
 
-Для трекинга событий используйте метод LogEvent:
+For event tracking, use the LogEvent method:
 
 ```
 void LogEvent(string _eventName, Dictionary<string, object> _eventParams = null);
 ```
 
-где:
+where
 
-_eventName - имя события
+_eventName is the event name
 
-_eventParams  - произвольные дополнительные параметры
+_eventParams are arbitrary additional parameters
 
-Пример:
+Example:
 ```
 DmpAnalytics.Instance.LogEvent("SCENE_OPEN", new Dictionary<string, object>
 {
@@ -117,10 +119,15 @@ DmpAnalytics.Instance.LogEvent("SCENE_OPEN", new Dictionary<string, object>
 });
 ```
 
-## 3. Проверка интеграции
+## 3. Integration check
 
-При вызове методов DmpAnalytics.Instance в консоли должны отображаться сообщения об отправке событий (убедитесь, что флаг Debug Mode установлен  в настройках аналитики - см. п. 1.4):
+When invoking DmpAnalytics.Instance methods, the console should display messages of events being sent (make sure Debug Mode is enabled in the analytics settings – see paragraph 1.4):
 
 ![Log](/.readme/log.png)
 
-Проверить валидность отправленных событий вы сможете в персональном дашборде в Tableau, доступ к которому вы получите от менеджера Green Grey вместе с ключами приложения.
+You can check the validity of the sent events in your personal Tableau dashboard. The access to the dashboard is granted by the Green Grey manager along with the application keys.
+
+* To do so, log in with the provided credentials at online.tableau.com.
+* You will see a dashboard with a single view that displays all the events received from your application.
+* Make sure all the events received by the server are the same as sent on your side.
+
