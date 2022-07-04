@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 335f9f50ad421004aa29f85d3e636919
+guid: b4feecff358f2314aad74539fcb64b0a
 PluginImporter:
   externalObjects: {}
   serializedVersion: 2
@@ -16,17 +16,17 @@ PluginImporter:
     second:
       enabled: 0
       settings:
-        Exclude Android: 0
+        Exclude Android: 1
         Exclude Editor: 0
         Exclude Linux64: 0
         Exclude OSXUniversal: 0
         Exclude Win: 0
         Exclude Win64: 0
-        Exclude iOS: 0
+        Exclude iOS: 1
   - first:
       Android: Android
     second:
-      enabled: 1
+      enabled: 0
       settings:
         CPU: ARMv7
   - first:
@@ -59,13 +59,13 @@ PluginImporter:
     second:
       enabled: 1
       settings:
-        CPU: x86
+        CPU: None
   - first:
       Standalone: Win64
     second:
       enabled: 1
       settings:
-        CPU: x86_64
+        CPU: None
   - first:
       Windows Store Apps: WindowsStoreApps
     second:
@@ -75,7 +75,7 @@ PluginImporter:
   - first:
       iPhone: iOS
     second:
-      enabled: 1
+      enabled: 0
       settings:
         AddToEmbeddedBinaries: false
         CPU: AnyCPU

@@ -1511,7 +1511,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1174439977}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 2037341594, guid: afaa2aaa554cd9b43ac6828497b7afc8, type: 3}
+  m_Script: {fileID: 2037341594, guid: 335f9f50ad421004aa29f85d3e636919, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_apiUri: https://dmp.greengreystudio.com/events
@@ -1530,7 +1530,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1174439977}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1085557972, guid: afaa2aaa554cd9b43ac6828497b7afc8, type: 3}
+  m_Script: {fileID: -1085557972, guid: 335f9f50ad421004aa29f85d3e636919, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1174439980

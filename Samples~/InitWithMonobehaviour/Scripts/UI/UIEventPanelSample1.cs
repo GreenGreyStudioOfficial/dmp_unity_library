@@ -1,4 +1,5 @@
 ﻿using GreenGrey.Analytics;
+using GreenGrey.Analytics.Event;
 using UnityEngine;
 using UnityEngine.UI;
 
