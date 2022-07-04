@@ -3,7 +3,7 @@ Translations of the guide are available in the following languages:
 * [Russian](/README_ruRU.md)
 
 ## Current version
-1.3.0
+1.1.0
 
 ## 0. What you need for integration
 **analytics_project_key** - the project ID key in the analytics system
@@ -16,7 +16,7 @@ You may obtain it from your manager in Green Grey
 
 ![Add package to project](/.readme/add_package_from_git.png)
 
-1.2 In the window that opens, insert the link https://github.com/GreenGreyStudioOfficial/dmp_unity_library.git#1.3.0
+1.2 In the window that opens, insert the link https://github.com/GreenGreyStudioOfficial/dmp_unity_library.git#1.1.0
 
 1.3 Select the menu item GreenGrey → Analytics → Create GGAnalytics GameObject.
 
