@@ -1,7 +1,7 @@
 {
   "name": "com.greengreysoftworks.dmpanalytics",
   "displayName": "Green Gray Analytics Unity module",
-  "version": "1.2.0",
+  "version": "1.3.1",
   "unity": "2019.1",
   "description": "Green Gray Analytics Unity module",
   "type": "library",
