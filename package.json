@@ -5,9 +5,6 @@
   "unity": "2020.1",
   "description": "Green Grey Analytics Unity module",
   "type": "library",
-  "dependencies": {
-    "com.unity.nuget.newtonsoft-json": "3.0.2"
-  },
   "samples": [
     {
       "displayName": "Init analytics with MonoBehaviour",
