@@ -2,7 +2,7 @@
 Библиотека для сбора и отправки событий игровой аналитики в системе DMP.
 
 ## Текущая версия
-1.1.0
+1.3.3
 
 ## 0. Что понадобится для интеграции?
 **analytics_project_key** - ключ идентификации проекта в системе аналитики
@@ -15,7 +15,7 @@
 
 ![Add package to project](/.readme/add_package_from_git.png)
 
-1.2 В открывшемся окне вставьте ссылку https://github.com/GreenGreyStudioOfficial/dmp_unity_library.git#1.1.0
+1.2 В открывшемся окне вставьте ссылку https://github.com/GreenGreyStudioOfficial/dmp_unity_library.git#1.3.3
 
 1.3 Выберите пункт меню GreenGrey → Analytics → Create GGAnalytics GameObject.
 
