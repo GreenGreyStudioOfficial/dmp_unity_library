@@ -6,6 +6,7 @@ using GreenGrey.Analytics;
 using GreenGrey.Analytics.Core;
 using GreenGrey.Analytics.Device.Info;
 using GreenGrey.Analytics.Event;
+using GreenGrey.Analytics.Helpers;
 using GreenGrey.Analytics.Logger;
 using UnityEngine;
 using UnityEngine.UI;

@@ -2,7 +2,7 @@
     "name": "Greengray.GGAnalytics.editor",
     "rootNamespace": "",
     "references": [
-        "GUID:32da4b80931635b4e8414cc40a4e15d6"
+        "GUID:d912412f9ef94e83a03352359aee83ee"
     ],
     "includePlatforms": [
         "Editor"

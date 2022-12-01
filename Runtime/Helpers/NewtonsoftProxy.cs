@@ -5,7 +5,7 @@ using Newtonsoft.Json.Serialization;
 
 namespace GreenGrey.Analytics.Helpers
 {
-    public class NewtonsoftProxy : IJsonProxy
+    internal sealed class NewtonsoftProxy : IJsonProxy
     {
         public object Parse(string _source)
         {

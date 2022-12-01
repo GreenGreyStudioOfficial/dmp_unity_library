@@ -5,7 +5,7 @@ using Newtonsoft.Json.Serialization;
 
 namespace GreenGrey.Analytics.Helpers
 {
-    public class IgnorePropertiesResolver : DefaultContractResolver
+    public sealed class IgnorePropertiesResolver : DefaultContractResolver
     {
         private readonly HashSet<string> m_ignoreProps;
         public IgnorePropertiesResolver(IEnumerable<string> _propNamesToIgnore)
