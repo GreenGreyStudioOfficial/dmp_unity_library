@@ -3,7 +3,7 @@ Translations of the guide are available in the following languages:
 * [Russian](/README_ruRU.md)
 
 ## Current version
-1.3.10
+1.3.11  
 
 ## 0. What you need for integration
 **analytics_project_key** - the project ID key in the analytics system
@@ -130,4 +130,3 @@ You can check the validity of the sent events in your personal Tableau dashboard
 * To do so, log in with the provided credentials at online.tableau.com.
 * You will see a dashboard with a single view that displays all the events received from your application.
 * Make sure all the events received by the server are the same as sent on your side.
-

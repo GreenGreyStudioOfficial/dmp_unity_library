@@ -22,6 +22,7 @@ namespace Greengray.Analytics.Example
         public uint SendEventsTimeoutInSec => 600;
         public bool RegisterAppPause => true;
         public bool UsePrettyLogger => false;
+        public bool UseChunkedLogging => false;
     }
     
     public class GGAnalyticsExampleControllerSample2 : MonoBehaviour
