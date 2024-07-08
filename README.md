@@ -16,7 +16,7 @@ You may obtain it from your manager in Green Grey
 
 ![Add package to project](/.readme/add_package_from_git.png)
 
-1.2 In the window that opens, insert the link https://github.com/GreenGreyStudioOfficial/dmp_unity_library.git#1.3.10
+1.2 In the window that opens, insert the link https://github.com/GreenGreyStudioOfficial/dmp_unity_library.git#1.3.11
 
 1.3 Select the menu item GreenGrey → Analytics → Create GGAnalytics GameObject.
 
