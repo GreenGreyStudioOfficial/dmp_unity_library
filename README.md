@@ -3,7 +3,7 @@ Translations of the guide are available in the following languages:
 * [Russian](/README_ruRU.md)
 
 ## Current version
-1.3.12  
+1.3.13  
 
 ## 0. What you need for integration
 **analytics_project_key** - the project ID key in the analytics system
