@@ -14,7 +14,7 @@ namespace Greengray.Analytics.Example
 {
     public class GGAnalyticsConfigurationExampleSample3 : IGGAnalyticsConfiguration
     {
-        public string ApiUri => "https://dmp.greengreystudio.com/events";
+        public string ApiUri => "https://greengreystudio.com/events";
         public LogLevel LogLevel => LogLevel.DEBUG;
         public string ApiKey => "779a42bdbebeccc7099de0aaff8b7298d4c22638a95028c362da50bcc5da9e67";
         public uint MaxEventsCountToSend => 10;
